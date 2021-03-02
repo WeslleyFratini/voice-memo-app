@@ -1,5 +1,5 @@
 export default class Controller {
-  contructor({ view, media, recorder }) {
+  constructor({ view, media, recorder }) {
     this.view = view;
     this.media = media;
     this.recorder = recorder;
@@ -23,6 +23,7 @@ export default class Controller {
 
   async onStopRecording() {
     this.recorder.stopRecording();
+
     setTimeout(() => {
       const audioURL = this.recorder.getRecordingURL();
       this.view.playAudio(audioURL);

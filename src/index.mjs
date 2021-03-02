@@ -10,4 +10,5 @@ const recorder = new Recorder();
 Controller.initialize({
   view,
   media,
+  recorder,
 });

@@ -4,24 +4,26 @@ export default class View {
     this.btnStop = document.getElementById("btnStop");
     this.audioElement = document.getElementById("audio");
   }
-  onRecordClick(comand) {
+
+  onRecordClick(command) {
     return () => {
-      comand();
+      command();
       this.toggleAudioElement({ visible: false });
     };
   }
 
-  onRecordingClick(comand) {
+  onStopRecordingClick(command) {
     return () => {
-      comand();
+      command();
     };
-  }
-  configureStartRecordingButton(command) {
-    this.btnStart.addEventListener("click", this.onRecordClick(comand));
   }
 
   configureStartRecordingButton(command) {
-    this.btnStop.addEventListener("click", this.onStartRecording(comand));
+    this.btnStart.addEventListener("click", this.onRecordClick(command));
+  }
+
+  configureStopRecordingButton(command) {
+    this.btnStop.addEventListener("click", this.onStopRecordingClick(command));
   }
 
   toggleAudioElement({ visible }) {
@@ -32,7 +34,7 @@ export default class View {
   playAudio(url) {
     const audio = this.audioElement;
     audio.src = url;
-    audio.muted = stopOnFalse;
+    audio.muted = false;
     this.toggleAudioElement({ visible: true });
     audio.addEventListener("loadedmetadata", (_) => audio.play());
   }
